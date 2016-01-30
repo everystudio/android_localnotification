@@ -18,7 +18,7 @@ import android.util.Log;
 
 public class TestNotificationReceiver extends BroadcastReceiver{
 	// staticはもはや意味が無いかも
-	MediaPlayer m;
+	static MediaPlayer m;
 	
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -37,9 +37,13 @@ public class TestNotificationReceiver extends BroadcastReceiver{
         if( sound_path.equals("stop") ){
             Log.i("Unity", "TestNotificationReceiver.stop");
         	if( m != null ){
+                Log.i("Unity", "m notnull");
 	            m.stop();
 	            m.release();
 	            m = new MediaPlayer();
+        	}
+        	else {
+                Log.i("Unity", "m null");
         	}
             return;
         }
